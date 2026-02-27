@@ -1,12 +1,22 @@
 :root {
-  --main-green-color: #36c21e;
-  --focus-color: #4f46e5;
+  --main-color: #09212a;
+  --bg-color: #06171e;
+  --font-footer: #99acb3;
+  --focus-color: #000;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-color);
 }
 
 .container {
-  /* 1280px */
-  max-width: 128rem;
+  max-width: 144rem;
   margin: 0 auto;
   width: 90%;
 }
-
