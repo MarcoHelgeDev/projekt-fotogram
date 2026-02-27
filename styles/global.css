@@ -1,0 +1,12 @@
+:root {
+  --main-green-color: #36c21e;
+  --focus-color: #4f46e5;
+}
+
+.container {
+  /* 1280px */
+  max-width: 128rem;
+  margin: 0 auto;
+  width: 90%;
+}
+

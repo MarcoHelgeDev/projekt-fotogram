@@ -1,0 +1,10 @@
+@import "reset.css";
+@import "global.css";
+
+button img {
+  height: 15rem;
+  width: 15rem;
+  object-fit: cover;
+  display: block;
+}
+
