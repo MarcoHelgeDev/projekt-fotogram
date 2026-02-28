@@ -5,6 +5,36 @@
   --focus-color: #000;
 }
 
+h1 {
+  font-family: Figtree;
+  font-size: 5.6rem;
+  color: white;
+  text-align: center;
+  margin-top: 14rem;
+  margin-bottom: 14rem;
+}
+
+  @media (max-width: 671px) {
+    h1 {
+      padding-left: 8rem;
+      padding-right: 8rem;
+    }
+  }
+
+  @media (max-width: 527px) {
+    h1 {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  @media (max-width: 423px) {
+    h1 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
 html,
 body {
   height: 100%;
@@ -13,6 +43,14 @@ body {
 body {
   min-height: 100vh;
   background-color: var(--bg-color);
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 .container {
