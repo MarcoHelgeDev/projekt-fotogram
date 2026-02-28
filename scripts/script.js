@@ -45,12 +45,21 @@ const renderDialogContent = () => {
 function openDialog(id) {
   imgId = id;  
   dialogRef.showModal();
-  updateImgDialog(imgId)
-  updateDialogFooter(imgId)
+  updateImgDialog(imgId);
+  updateDialogFooter(imgId);
+  updateHeaderDialog(imgId);
 
   dialogRef.classList.add("opened");
 }
 
+const updateHeaderDialog = (id) => {
+  imgName = myImg[id].slice(0, -4);;
+   const HeaderDialog = document.querySelector('.js-dialog-header');
+    HeaderDialog.innerHTML = /*html*/ `
+      <h2>${imgName}</h2>
+      <button class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
+    `;
+}
 const updateImgDialog = (id) => {
   const imgDialog = document.querySelector('.js-dialog-section');
   imgDialog.innerHTML = /*html*/ `
