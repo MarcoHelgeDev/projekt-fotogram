@@ -1,23 +1,41 @@
-const myImgs = ['artisticoperations-giraffe.jpg',
-  'botondodler-cocker-spaniel.jpg',
-  'fotoart-treu-falcke-stone.jpg',
-  'gratzwolfgang-colorful-balloons.jpg',
-  'michael_luenen-penguins.jpg',
-  'timrael-gaming-computer.jpg',
-  'mariya_m-salami-pizza.jpg',
-  'mwitt1337-ghost-busters.jpg',
-  'mxwegele-forest.jpg',
-  'tornanddrawn_sydney-skate-board.jpg',
-  'magocarlosyo-back-to-the-future.jpg',
-  'heimseiten_webdesignkoeln-dinosaur.jpg',
-  'jonathanvalencia5-street-food-barbecue.jpg',
-  'designdrawartes-sushi.jpg',
-  'beba-aida.jpg',
+const myImg = [
+  "botondodler-cocker-spaniel.jpg",
+  "fotoart-treu-falcke-stone.jpg",
+  "gratzwolfgang-colorful-balloons.jpg",
+  "michael_luenen-penguins.jpg",
+  "timrael-gaming-computer.jpg",
+  "mariya_m-salami-pizza.jpg",
+  "mxwegele-forest.jpg",
+  "tornanddrawn_sydney-skate-board.jpg",
+  "magocarlosyo-back-to-the-future.jpg",
+  "heimseiten_webdesignkoeln-dinosaur.jpg",
+  "designdrawartes-sushi.jpg",
+  "beba-aida.jpg",
 ];
 
-const myImgsLinks = [];
+const myImgUrl = [];
+const dialogRef = document.querySelector(".js-dialog-gallery");
 
-const dialogRef = document.querySelector('.js-dialog-gallery');
+const fillMyImgUrl = () => {
+  let imgUrl = "./assets/img/gallery/";
+  for (let i = 0; i < myImg.length; i++) {
+    myImgUrl[i] = imgUrl + myImg[i];
+  }
+};
+
+const renderImgGallery = () => {
+  let htmlContent = "";
+  const myGalleryContent = document.querySelector(".js-gallery-wrapper");
+  for (let i = 0; i < myImgUrl.length; i++) {
+    htmlContent += /*html*/ `
+      <button class="js-img-btn btn-as-img">
+        <img onclick="openDialog()" src="${myImgUrl[i]}"/>
+      </button>
+    `;
+  }
+  myGalleryContent.innerHTML = htmlContent;
+};
+
 
 function openDialog() {
   dialogRef.showModal();
@@ -28,3 +46,5 @@ function closeDialog() {
   dialogRef.close();
   dialogRef.classList.remove("opened");
 }
+
+fillMyImgUrl();

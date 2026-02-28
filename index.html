@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles/index.css" />
     <script src="./scripts/script.js" defer></script>
   </head>
-  <body>
+  <body onload="renderImgGallery()">
     <header class="site-header">
       <div class="container">
         <div class="site-header-wrapper">
@@ -37,31 +37,7 @@
       <section>
         <h1>Your personal photo album</h1>
         <div class="section-wrapper">
-          <div class="gallery-wrapper">
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
-            <button class="js-img-btn btn-as-img">
-              <img onclick="openDialog()" src="./assets/img/dog.jpg" />
-            </button>
+          <div class="js-gallery-wrapper gallery-wrapper">
           </div>
         </div>
       </section>
