@@ -11,15 +11,16 @@ main {
   flex: 1;
 }
 
+/* Header */
 .site-header {
   background-color: var(--main-color);
 }
 
 .site-header-wrapper {
-  height: 8.1rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 8.1rem;
 }
 
 .site-header img {
@@ -29,10 +30,12 @@ main {
 
 @media (max-width: 767px) {
   .site-header-wrapper {
-    height: 8rem;
     justify-content: center;
+    height: 8rem;
   }
 }
+
+/*Main Content*/
 .section-wrapper {
   display: flex;
   align-items: center;
@@ -40,12 +43,44 @@ main {
 }
 
 .gallery-wrapper {
-  width: 117rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.6rem;
   justify-content: center;
+  gap: 1.6rem;
+  width: 117rem;
   margin-bottom: 14rem;
+}
+
+.btn-as-img img {
+  display: flex;
+  height: 15rem;
+  width: 15rem;
+  border-radius: 1.6rem;
+  border: 0.2rem solid #124658;
+  object-fit: cover;
+}
+
+.btn-as-img img:hover {
+  border: 0.2rem solid #6bc1e1;
+  animation: fade 400ms ease-in-out;
+}
+
+.btn-as-img:focus-visible {
+  border-radius: 1.6rem;
+  outline:0.2rem solid #6bc1e1;
+  outline-offset: 0.4rem;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 783px) {
@@ -56,16 +91,17 @@ main {
   }
 
   .gallery-wrapper {
-    width: 117rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 1.6rem;
     align-items: center;
     justify-content: center;
+    width: 117rem;
+    gap: 1.6rem;
     margin-bottom: 8rem;
   }
 }
 
+/*Footer */
 .site-footer {
   height: 12.8rem;
   background-color: var(--main-color);
@@ -91,32 +127,7 @@ main {
   margin-top: 2.5rem;
 }
 
-.btn-as-img img {
-  height: 15rem;
-  width: 15rem;
-  object-fit: cover;
-  display: flex;
-  border-radius: 1.6rem;
-  border: 0.2rem solid #124658;
-}
-
-.btn-as-img img:hover {
-  background-color: red;
-  border: 0.2rem solid #6bc1e1;
-  animation: fade 400ms ease-in-out;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+/*Dialog*/
 
 dialog[open] {
   position: fixed;
@@ -127,8 +138,9 @@ dialog[open] {
 .dialog-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
+
 .dialog-gallery {
   border: none;
   width: 68.8rem;
@@ -136,15 +148,15 @@ dialog[open] {
   height: 67.4rem;
   background-color: var(--main-color);
   color: white;
-  padding: 5.6rem 6.4rem 5.6rem 6.4rem;
 }
 
 .dialog-gallery-content {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  padding: 5.6rem 6.4rem 5.6rem 6.4rem;
+  height: 100%;
 }
 
 .dialog-gallery button {
@@ -152,37 +164,39 @@ dialog[open] {
 }
 
 .dialog-footer {
-  margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
   height: 5rem;
 }
 
 .dialog-section {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .dialog-gallery section {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .dialog-section img {
+  display: block;
   width: 100%;
   height: 37rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  display: block;
   object-fit: cover;
 }
 
 .dialog-x-btn {
+    flex-shrink: 0;
+
   width: 3.2rem;
   height: 3.2rem;
   background-size: contain;
@@ -238,8 +252,8 @@ dialog[open] {
 
 @media (max-width: 479px) {
   h2 {
-    font-size: 2.4rem;
     margin-top: 5rem;
+    font-size: 2.0rem;
   }
 
   .dialog-gallery {
@@ -248,6 +262,21 @@ dialog[open] {
     height: 67.4rem;
     padding: 3.2rem 1.6rem 3.2rem 1.6rem;
   }
+
+  .dialog-x-btn {
+  margin-bottom: 5rem;
+}
+
+  .dialog-gallery-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding:0;
+  height: 100%;
+}
+
+
 }
 
 @media (max-width: 333px) {

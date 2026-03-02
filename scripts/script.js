@@ -13,8 +13,24 @@ const myImg = [
   "beba-aida.jpg",
 ];
 
+const myImgAlt = [
+  "cocker-spaniel",
+  "beach-falcke-stone",
+  "colorful-heart-shape-balloons",
+  "penguins",
+  "gaming-computer",
+  "salami-pizza",
+  "forest",
+  "skate-board",
+  "car-back-to-the-future",
+  "dinosaur-skeleton",
+  "sushi",
+  "aida",
+];
+
 const myImgUrl = [];
 const dialogRef = document.querySelector(".js-dialog-gallery");
+
 let imgId = 0;
 
 
@@ -30,8 +46,13 @@ const renderImgGallery = () => {
   const myGalleryContent = document.querySelector(".js-gallery-wrapper");
   for (let i = 0; i < myImgUrl.length; i++) {
     htmlContent += /*html*/ `
-      <button class="js-img-btn btn-as-img">
-        <img onclick="openDialog(${i})" src="${myImgUrl[i]}"/>
+      <button
+        type="button"
+        class="js-img-btn btn-as-img"
+        onclick="openDialog(${i})"
+        aria-label="Bild ${i + 1} öffnen"
+      >
+        <img src="${myImgUrl[i]}" alt="Galerie Bild ${i + 1}" />
       </button>
     `;
   }
@@ -48,7 +69,7 @@ function openDialog(id) {
   updateImgDialog(imgId);
   updateDialogFooter(imgId);
   updateHeaderDialog(imgId);
-
+  dialogRef.focus();
   dialogRef.classList.add("opened");
 }
 
@@ -63,16 +84,16 @@ const updateHeaderDialog = (id) => {
 const updateImgDialog = (id) => {
   const imgDialog = document.querySelector('.js-dialog-section');
   imgDialog.innerHTML = /*html*/ `
-         <img src="${myImgUrl[id]}"/>
+         <img src="${myImgUrl[id]}" alt="${myImgAlt[id]}"/>
     `;
 }
 
 const updateDialogFooter = (id) => {
    const footerDialog = document.querySelector('.js-dialog-footer');
     footerDialog.innerHTML = /*html*/ `
-      <button class="dialog-btn dialog-btn-left" onclick="prevImg(${id-1})"></button>
+      <button class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id-1})"></button>
         <span>${id+1} / ${myImgUrl.length}</span>
-      <button class="dialog-btn dialog-btn-right" onclick="nextImg(${id+1})"></button>
+      <button class="js-button-right dialog-btn dialog-btn-right" onclick="nextImg(${id+1})"></button>
     `;
 }
 
@@ -99,4 +120,26 @@ function closeDialog() {
   dialogRef.classList.remove("opened");
 }
 
+const nextWithArrowKey = () => {
+  dialogRef.addEventListener('keydown', (event) => {
+ switch (event.key) {
+    case "ArrowLeft":      
+       prevImg(imgId - 1);
+      break;
+    case "ArrowRight":
+       nextImg(imgId + 1);
+      break;
+    default:
+      return; 
+  }
+  })
+}
+
+dialogRef.addEventListener("click", (event) => {
+  if (event.target === dialogRef) {
+    closeDialog();
+  }
+});
+
 fillMyImgUrl();
+nextWithArrowKey();
