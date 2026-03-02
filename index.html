@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fotogram</title>
     <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.svg" />
     <script src="./scripts/script.js" defer></script>
   </head>
   <body onload="renderImgGallery()">
@@ -16,7 +17,7 @@
       </div>
     </header>
 
-    <dialog class="js-dialog-gallery dialog-gallery" tabindex="-1">
+    <dialog class="js-dialog-gallery dialog-gallery">
       <div class="dialog-gallery-content">
         <header class="js-dialog-header dialog-header">
         </header>
@@ -31,7 +32,7 @@
     
     <main class="container">
       <section>
-        <h1>Your personal photo album</h1>
+        <h1 class="js-headline" tabindex="-1">Your personal photo album</h1>
         <div class="section-wrapper">
           <div class="js-gallery-wrapper gallery-wrapper">
           </div>

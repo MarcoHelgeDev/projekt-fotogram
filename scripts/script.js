@@ -33,7 +33,6 @@ const dialogRef = document.querySelector(".js-dialog-gallery");
 
 let imgId = 0;
 
-
 const fillMyImgUrl = () => {
   let imgUrl = "./assets/img/gallery/";
   for (let i = 0; i < myImg.length; i++) {
@@ -59,12 +58,10 @@ const renderImgGallery = () => {
   myGalleryContent.innerHTML = htmlContent;
 };
 
-const renderDialogContent = () => {
-
-}
+const renderDialogContent = () => {};
 
 function openDialog(id) {
-  imgId = id;  
+  imgId = id;
   dialogRef.showModal();
   updateImgDialog(imgId);
   updateDialogFooter(imgId);
@@ -74,72 +71,103 @@ function openDialog(id) {
 }
 
 const updateHeaderDialog = (id) => {
-  imgName = myImg[id].slice(0, -4);;
-   const HeaderDialog = document.querySelector('.js-dialog-header');
-    HeaderDialog.innerHTML = /*html*/ `
+  imgName = myImg[id].slice(0, -4);
+  const HeaderDialog = document.querySelector(".js-dialog-header");
+  HeaderDialog.innerHTML = /*html*/ `
       <h2>${imgName}</h2>
       <button class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
     `;
-}
+};
 const updateImgDialog = (id) => {
-  const imgDialog = document.querySelector('.js-dialog-section');
+  const imgDialog = document.querySelector(".js-dialog-section");
   imgDialog.innerHTML = /*html*/ `
          <img src="${myImgUrl[id]}" alt="${myImgAlt[id]}"/>
     `;
-}
+};
 
 const updateDialogFooter = (id) => {
-   const footerDialog = document.querySelector('.js-dialog-footer');
-    footerDialog.innerHTML = /*html*/ `
-      <button class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id-1})"></button>
-        <span>${id+1} / ${myImgUrl.length}</span>
-      <button class="js-button-right dialog-btn dialog-btn-right" onclick="nextImg(${id+1})"></button>
+  const footerDialog = document.querySelector(".js-dialog-footer");
+  footerDialog.innerHTML = /*html*/ `
+      <button class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id - 1})"></button>
+        <span>${id + 1} / ${myImgUrl.length}</span>
+      <button class="js-button-right dialog-btn dialog-btn-right" onclick="nextImg(${id + 1})"></button>
     `;
-}
+};
 
 const nextImg = (id) => {
-  if(id < myImgUrl.length){
-    openDialog(id)
+  if (id < myImgUrl.length) {
+    openDialog(id);
   } else {
     id = 0;
-    openDialog(id)
+    openDialog(id);
   }
-}
+};
 
 const prevImg = (id) => {
-  if(id >= 0){
-    openDialog(id)
+  if (id >= 0) {
+    openDialog(id);
   } else {
     id = myImgUrl.length;
-    openDialog(id-1)
+    openDialog(id - 1);
   }
-}
+};
 
-function closeDialog() {
+const  closeDialog = () => {
   dialogRef.close();
   dialogRef.classList.remove("opened");
 }
 
+const setFocusOnTop = () => {
+  const headlineRef = document.querySelector(".js-headline");
+  headlineRef.focus();
+};
+
+
 const nextWithArrowKey = () => {
-  dialogRef.addEventListener('keydown', (event) => {
- switch (event.key) {
-    case "ArrowLeft":      
-       prevImg(imgId - 1);
-      break;
-    case "ArrowRight":
-       nextImg(imgId + 1);
-      break;
-    default:
-      return; 
-  }
-  })
-}
+  dialogRef.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "ArrowLeft":
+        prevImg(imgId - 1);
+        break;
+      case "ArrowRight":
+        nextImg(imgId + 1);
+        break;
+      default:
+        return;
+    }
+  });
+};
 
-dialogRef.addEventListener("click", (event) => {
-  if (event.target === dialogRef) {
+const init = () => {
+  dialogRef.addEventListener("cancel", (event) => {
     closeDialog();
-  }
-});
+    setFocusOnTop();
+    document.activeElement.blur();
+  });
 
-fillMyImgUrl();
-nextWithArrowKey();
+  dialogRef.addEventListener("cancel", (event) => {
+    closeDialog();
+    setFocusOnTop();
+    document.activeElement.blur();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    if (dialogRef.open) {
+      closeDialog();
+      setFocusOnTop();
+
+      document.activeElement.blur();
+    } else {
+      setFocusOnTop();
+      document.activeElement.blur();
+    }
+  });
+
+  fillMyImgUrl();
+  nextWithArrowKey();
+};
+
+
+init();
