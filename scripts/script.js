@@ -46,12 +46,14 @@ const renderImgGallery = () => {
   for (let i = 0; i < myImgUrl.length; i++) {
     htmlContent += /*html*/ `
       <button
+        aria-haspopup="dialog"
+        aria-controls="gallery-dialog"
         type="button"
         class="js-img-btn btn-as-img"
         onclick="openDialog(${i})"
         aria-label="Bild ${i + 1} öffnen"
       >
-        <img src="${myImgUrl[i]}" alt="Galerie Bild ${i + 1}" />
+        <img src="${myImgUrl[i]}" alt="${myImgAlt[i]}" />
       </button>
     `;
   }
@@ -74,8 +76,8 @@ const updateHeaderDialog = (id) => {
   imgName = myImg[id].slice(0, -4);
   const HeaderDialog = document.querySelector(".js-dialog-header");
   HeaderDialog.innerHTML = /*html*/ `
-      <h2>${imgName}</h2>
-      <button class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
+      <h2 id="picture-name">${imgName}</h2>
+      <button arial-label="close-dialog" class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
     `;
 };
 const updateImgDialog = (id) => {
@@ -88,9 +90,9 @@ const updateImgDialog = (id) => {
 const updateDialogFooter = (id) => {
   const footerDialog = document.querySelector(".js-dialog-footer");
   footerDialog.innerHTML = /*html*/ `
-      <button class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id - 1})"></button>
+      <button aria-label="previous-picture" class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id - 1})"></button>
         <span>${id + 1} / ${myImgUrl.length}</span>
-      <button class="js-button-right dialog-btn dialog-btn-right" onclick="nextImg(${id + 1})"></button>
+      <button aria-label="next-picture" class="js-button-right dialog-btn dialog-btn-right" onclick="nextImg(${id + 1})"></button>
     `;
 };
 
