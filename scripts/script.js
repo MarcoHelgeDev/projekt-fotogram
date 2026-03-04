@@ -41,8 +41,13 @@ const fillMyImgUrl = () => {
 };
 
 const renderImgGallery = () => {
-  let htmlContent = "";
   const myGalleryContent = document.querySelector(".js-gallery-wrapper");
+  const htmlContent = renderTemplateGallery();
+  myGalleryContent.innerHTML = htmlContent;
+};
+
+const renderTemplateGallery = () => {
+  let htmlContent = "";
   for (let i = 0; i < myImgUrl.length; i++) {
     htmlContent += /*html*/ `
       <button
@@ -57,10 +62,8 @@ const renderImgGallery = () => {
       </button>
     `;
   }
-  myGalleryContent.innerHTML = htmlContent;
+  return htmlContent;
 };
-
-const renderDialogContent = () => {};
 
 function openDialog(id) {
   imgId = id;
@@ -74,13 +77,22 @@ function openDialog(id) {
 
 const updateHeaderDialog = (id) => {
   imgName = myImg[id].slice(0, -4);
+  dialogHeaderTemplate(imgName);
+};
+
+const dialogHeaderTemplate = (imgName) => {
   const HeaderDialog = document.querySelector(".js-dialog-header");
   HeaderDialog.innerHTML = /*html*/ `
       <h2 id="picture-name">${imgName}</h2>
-      <button arial-label="close-dialog" class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
+      <button aria-label="close-dialog" class="js-close-icon dialog-x-btn" onclick="closeDialog()"></button>
     `;
 };
+
 const updateImgDialog = (id) => {
+  dialogImgTemplate(id);
+};
+
+const dialogImgTemplate = (id) => {
   const imgDialog = document.querySelector(".js-dialog-section");
   imgDialog.innerHTML = /*html*/ `
          <img src="${myImgUrl[id]}" alt="${myImgAlt[id]}"/>
@@ -88,6 +100,10 @@ const updateImgDialog = (id) => {
 };
 
 const updateDialogFooter = (id) => {
+  dialogFooterTemplate(id);
+};
+
+const dialogFooterTemplate = (id) => {
   const footerDialog = document.querySelector(".js-dialog-footer");
   footerDialog.innerHTML = /*html*/ `
       <button aria-label="previous-picture" class="js-button-left dialog-btn dialog-btn-left" onclick="prevImg(${id - 1})"></button>
@@ -114,16 +130,15 @@ const prevImg = (id) => {
   }
 };
 
-const  closeDialog = () => {
+const closeDialog = () => {
   dialogRef.close();
   dialogRef.classList.remove("opened");
-}
+};
 
 const setFocusOnTop = () => {
   const headlineRef = document.querySelector(".js-headline");
   headlineRef.focus();
 };
-
 
 const nextWithArrowKey = () => {
   dialogRef.addEventListener("keydown", (event) => {
@@ -140,19 +155,15 @@ const nextWithArrowKey = () => {
   });
 };
 
-const init = () => {
+const dialogEventListener = () => {
   dialogRef.addEventListener("cancel", (event) => {
     closeDialog();
     setFocusOnTop();
     document.activeElement.blur();
   });
+};
 
-  dialogRef.addEventListener("cancel", (event) => {
-    closeDialog();
-    setFocusOnTop();
-    document.activeElement.blur();
-  });
-
+const documentEventListener = () => {
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
 
@@ -166,10 +177,13 @@ const init = () => {
       document.activeElement.blur();
     }
   });
+};
 
+const init = () => {
+  dialogEventListener();
+  documentEventListener();
   fillMyImgUrl();
   nextWithArrowKey();
 };
-
 
 init();

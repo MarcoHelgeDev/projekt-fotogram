@@ -67,7 +67,7 @@ main {
 
 .btn-as-img:focus-visible {
   border-radius: 1.6rem;
-  outline:0.2rem solid #6bc1e1;
+  outline: 0.2rem solid #6bc1e1;
   outline-offset: 0.4rem;
 }
 
@@ -197,7 +197,7 @@ dialog[open] {
 }
 
 .dialog-x-btn {
-   flex-shrink: 0;
+  flex-shrink: 0;
 
   width: 3.2rem;
   height: 3.2rem;
@@ -215,7 +215,7 @@ dialog[open] {
 }
 
 .dialog-x-btn:active {
-    background-image: url("../assets/img/close-press.svg");
+  background-image: url("../assets/img/close-press.svg");
 }
 
 .dialog-btn {
@@ -252,10 +252,16 @@ dialog[open] {
   height: 6rem;
 }
 
+@media (max-width: 780px) {
+  .dialog-section img {
+    object-fit: contain;
+  }
+}
+
 @media (max-width: 479px) {
   h2 {
     margin-top: 5rem;
-    font-size: 2.0rem;
+    font-size: 2rem;
     overflow-wrap: anywhere;
   }
 
@@ -267,19 +273,17 @@ dialog[open] {
   }
 
   .dialog-x-btn {
-  margin-bottom: 5rem;
-}
+    margin-bottom: 5rem;
+  }
 
   .dialog-gallery-content {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  padding:0;
-  height: 100%;
-}
-
-
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    height: 100%;
+  }
 }
 
 @media (max-width: 333px) {
